@@ -4,21 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[🔥] SOPHIE RAIN SPIDERMAN VIDEO</title>
+    <style>
+        #videoContainer {
+            display: none;
+        }
+        #leakButton {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <video id="videoPlayer" width="1920" height="1080" controls autoplay>
-        <source src="part1.mp4" type="video/mp4">
-        Il tuo browser non supporta il tag video.
-    </video>
-    <br>
-    <button id="restartButton" style="display:none;" onclick="restart()">Restart</button>
+    <button id="leakButton" onclick="startVideo()">LEAK</button>
+
+    <div id="videoContainer">
+        <video id="videoPlayer" width="1920" height="1080" controls>
+            <source src="part1.mp4" type="video/mp4">
+            Il tuo browser non supporta il tag video.
+        </video>
+        <br>
+        <button id="restartButton" style="display:none;" onclick="restart()">Restart</button>
+    </div>
 
     <script>
         const videoPlayer = document.getElementById('videoPlayer');
         const restartButton = document.getElementById('restartButton');
+        const videoContainer = document.getElementById('videoContainer');
+        const leakButton = document.getElementById('leakButton');
         let currentVideo = 1;
 
-        // Funzione per entrare in modalità schermo intero
         function goFullscreen() {
             if (videoPlayer.requestFullscreen) {
                 videoPlayer.requestFullscreen();
@@ -29,6 +45,13 @@
             } else if (videoPlayer.msRequestFullscreen) { // IE/Edge
                 videoPlayer.msRequestFullscreen();
             }
+        }
+
+        function startVideo() {
+            leakButton.style.display = 'none';
+            videoContainer.style.display = 'block';
+            videoPlayer.play();
+            goFullscreen();
         }
 
         videoPlayer.onplay = function() {

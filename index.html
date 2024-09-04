@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOPHIE RAIN SPIDERMAN VIDEO 🔥</title>
+    <title>[🔥] SOPHIE RAIN SPIDERMAN VIDEO</title>
 </head>
 <body>
     <video id="videoPlayer" width="1920" height="1080" controls autoplay>
@@ -17,6 +17,25 @@
         const videoPlayer = document.getElementById('videoPlayer');
         const restartButton = document.getElementById('restartButton');
         let currentVideo = 1;
+
+        // Funzione per entrare in modalità schermo intero
+        function goFullscreen() {
+            if (videoPlayer.requestFullscreen) {
+                videoPlayer.requestFullscreen();
+            } else if (videoPlayer.mozRequestFullScreen) { // Firefox
+                videoPlayer.mozRequestFullScreen();
+            } else if (videoPlayer.webkitRequestFullscreen) { // Chrome, Safari e Opera
+                videoPlayer.webkitRequestFullscreen();
+            } else if (videoPlayer.msRequestFullscreen) { // IE/Edge
+                videoPlayer.msRequestFullscreen();
+            }
+        }
+
+        videoPlayer.onplay = function() {
+            if (currentVideo === 1) {
+                goFullscreen();
+            }
+        };
 
         videoPlayer.onended = function() {
             if (currentVideo === 1) {
@@ -33,6 +52,7 @@
             videoPlayer.src = 'part1.mp4';
             videoPlayer.play();
             restartButton.style.display = 'none';
+            goFullscreen(); // Entra in modalità schermo intero anche al riavvio
         }
     </script>
 </body>

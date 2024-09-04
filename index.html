@@ -13,15 +13,30 @@
             justify-content: center;
             align-items: center;
             background: #000;
+            position: relative;
+        }
+
+        #backgroundImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('background.png') no-repeat center center;
+            background-size: cover;
+            filter: blur(10px); /* Effetto di blur */
+            z-index: 1;
         }
 
         #videoContainer {
             display: none;
             position: relative;
+            z-index: 2;
         }
 
         #videoPlayer {
-            filter: blur(5px); /* Applica un effetto di blur sul video */
+            width: 100vw;
+            height: 100vh;
         }
 
         #leakButton {
@@ -37,23 +52,20 @@
             border: none;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 10; /* Assicurati che il pulsante sia sopra il video */
+            z-index: 3; /* Assicurati che il pulsante sia sopra l'immagine e il video */
         }
 
         #leakButton:focus {
             outline: none;
         }
-
-        #restartButton {
-            display: none;
-        }
     </style>
 </head>
 <body>
+    <div id="backgroundImage"></div>
     <button id="leakButton" onclick="startVideo()">LEAK</button>
 
     <div id="videoContainer">
-        <video id="videoPlayer" width="1920" height="1080" controls>
+        <video id="videoPlayer" controls>
             <source src="part1.mp4" type="video/mp4">
             Il tuo browser non supporta il tag video.
         </video>
@@ -66,6 +78,7 @@
         const restartButton = document.getElementById('restartButton');
         const videoContainer = document.getElementById('videoContainer');
         const leakButton = document.getElementById('leakButton');
+        const backgroundImage = document.getElementById('backgroundImage');
         let currentVideo = 1;
 
         function goFullscreen() {
@@ -81,10 +94,11 @@
         }
 
         function startVideo() {
-            leakButton.style.display = 'none';
-            videoContainer.style.display = 'block';
-            videoPlayer.play();
-            goFullscreen();
+            backgroundImage.style.display = 'none'; // Nasconde l'immagine di sfondo
+            leakButton.style.display = 'none'; // Nasconde il pulsante "LEAK"
+            videoContainer.style.display = 'block'; // Mostra il contenitore del video
+            videoPlayer.play(); // Avvia il video
+            goFullscreen(); // Entra in modalità schermo intero
         }
 
         videoPlayer.onplay = function() {

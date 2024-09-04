@@ -1,1 +1,39 @@
-<meta http-equiv="refresh" content="0; url=http://example.com/" />
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Sequenza</title>
+</head>
+<body>
+    <video id="videoPlayer" width="640" height="360" controls autoplay>
+        <source src="part1.mp4" type="video/mp4">
+        Il tuo browser non supporta il tag video.
+    </video>
+    <br>
+    <button id="restartButton" style="display:none;" onclick="restart()">Restart</button>
+
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const restartButton = document.getElementById('restartButton');
+        let currentVideo = 1;
+
+        videoPlayer.onended = function() {
+            if (currentVideo === 1) {
+                videoPlayer.src = 'part2.mp4';
+                videoPlayer.play();
+                currentVideo = 2;
+            } else {
+                restartButton.style.display = 'inline';
+            }
+        };
+
+        function restart() {
+            currentVideo = 1;
+            videoPlayer.src = 'part1.mp4';
+            videoPlayer.play();
+            restartButton.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
